@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Home } from "../components/Home";
+import WeatherContext from "../contexts/WeatherContext";
 
 export const HomeScreen = ({}) => {
+  const {
+    processing,
+    currentWeather,
+    forecastData,
+    featchWeatherData
+  } = useContext(WeatherContext);
+
   const [tempratureOptions, setTempratureOptions] = useState([
     { name: "Celcius", active: true },
     { name: "Farhenite", active: false }
@@ -22,12 +30,18 @@ export const HomeScreen = ({}) => {
     setTempratureOptions(options);
   };
 
+  useEffect(() => {
+    featchWeatherData();
+  }, []);
+
   return (
     <Home
       tempratureOptions={tempratureOptions}
       search={search}
       setSearch={setSearch}
       handleOptionChange={handleOptionChange}
+      currentWeather = {currentWeather}
+      forecastData = {forecastData}
     />
   );
 };

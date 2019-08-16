@@ -1,10 +1,13 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "http://api.apixu.com/v1",
-  params: {
-    key: "f04c33c3c95e40c68a585310191308"
-  }
+  baseURL: "http://api.apixu.com/v1"
+});
+
+client.interceptors.request.use(function(config) {
+  console.log(config);
+  config.params.key = "f04c33c3c95e40c68a585310191308";
+  return config;
 });
 
 export const normalizeResponse = async apiTask => {
@@ -16,7 +19,7 @@ export const normalizeResponse = async apiTask => {
       throw responseData;
     }
   } catch (error) {
-    throw new Error("Api is not responding");
+    throw new Error("Ap is not responding");
   }
 };
 

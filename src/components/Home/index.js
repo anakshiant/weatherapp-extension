@@ -8,8 +8,12 @@ export const Home = ({
   tempratureOptions,
   handleOptionChange,
   setSearch,
-  search
+  search,
+  currentWeather,
+  forecastData
 }) => {
+  console.log(currentWeather);
+  console.log(forecastData);
   return (
     <React.Fragment>
       <ToggleButton
@@ -26,7 +30,10 @@ export const Home = ({
         />
       </div>
       <div className="row pt-2 pb-2">
-        <WeatherData />
+        <WeatherData
+          currentWeather={currentWeather}
+          forecastData={forecastData}
+        />
       </div>
     </React.Fragment>
   );
