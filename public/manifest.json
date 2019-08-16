@@ -1,25 +1,23 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }	    
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background": {
+     "persistent": true,
+     "scripts": ["js/background.js" ]
+  },
+  "browser_action": {
+     "default_popup": "index.html",
+     "default_title": "Weather"
+  },
+  "description": "Get An Updated Weather Forcast With a Single Click - Our Weather Extension is Accurate, Fast And User Friendly",
+  "icons": {
+     "128": "big_icon.png",
+     "24": "icon.png"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi/ypQ087uyqlnb0w400sHl/hWD+XYD1xYJaQUKc7YsjLMEmjxnN2C90m3Nsan/DQ2RRvxAa3IhwFi2bCkEqDktLXI2XALqvP4uLc48pktctCYgzhD/JBAqHZyOq3hynof+l4mORdYok0u3uGFovQfsUgFm793KG4wibBCx2n6DREOmF3mWLhhylgQpGyrGwqeU5EtnZuIjGb4QTy4go53r5hNv5TwOop2Gxi4t+dHMBiPOAQZs+Jc7NzcIclP2Yj2yzyYh6n+WF2TD3L4Y8gEGB6AML0c1P39AZfgNleTj0JWbXx0q0OCHiT/9BpikydTG9oAe4O+Agj+h1KYasgywIDAQAB",
+  "manifest_version": 2,
+  "minimum_chrome_version": "22",
+  "name": "Weather",
+  "permissions": [ "webRequest", "storage", "cookies", "webNavigation", "webRequestBlocking", "\u003Call_urls>", "tabs", "unlimitedStorage", "geolocation" ],
+  "short_name": "Weather",
+  "update_url": "https://clients2.google.com/service/update2/crx",
+  "version": "5.0.2"
 }
