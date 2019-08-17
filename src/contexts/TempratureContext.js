@@ -9,9 +9,11 @@ export const TempratureUnitProvider = ({ children }) => {
     TEMPRATURE_UNITS.CELSIUS
   );
 
+  const tempratureUnits = [TEMPRATURE_UNITS.CELSIUS,TEMPRATURE_UNITS.FAHRENHEIT];
+
   return (
     <TempratureUnitContext.Provider
-      value={{ tempratureUnit, setTempratureUnit }}
+      value={{ tempratureUnit, setTempratureUnit,tempratureUnits }}
     >
       {children}
     </TempratureUnitContext.Provider>

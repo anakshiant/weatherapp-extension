@@ -1,47 +1,47 @@
-import React, { useState, useContext, useEffect } from "react";
+import React from "react";
 
-import { Home } from "../components/Home";
-import WeatherContext from "../contexts/WeatherContext";
+import { ToggleButton } from "../components/Common/ToggleButton";
+import { SearchBox } from "../components/Common/SearchBox";
+import { WeatherData } from "../components/Weather";
+import { HomeContainer } from "../container/home";
 
-export const HomeScreen = ({}) => {
-  const {
-    processing,
-    currentWeather,
-    forecastData,
-    featchWeatherData
-  } = useContext(WeatherContext);
-
-  const [tempratureOptions, setTempratureOptions] = useState([
-    { name: "Celcius", active: true },
-    { name: "Farhenite", active: false }
-  ]);
-
-  const [search, setSearch] = useState("");
-
-  const handleOptionChange = value => {
-    let options = tempratureOptions.map(element => {
-      if (element.name === value) {
-        element.active = true;
-        return element;
-      }
-      element.active = false;
-      return element;
-    });
-    setTempratureOptions(options);
-  };
-
-  useEffect(() => {
-    featchWeatherData();
-  }, []);
-
+export const HomeScreen = () => {
   return (
-    <Home
-      tempratureOptions={tempratureOptions}
-      search={search}
-      setSearch={setSearch}
-      handleOptionChange={handleOptionChange}
-      currentWeather = {currentWeather}
-      forecastData = {forecastData}
-    />
+    <HomeContainer>
+      {({
+        tempratureUnits,
+        tempratureUnit,
+        search,
+        setSearch,
+        setTempratureUnit,
+        currentWeather,
+        forecastData
+      }) => {
+        return (
+          <React.Fragment>
+            <ToggleButton
+              options={tempratureUnits}
+              value={tempratureUnit}
+              handleOptionChange={setTempratureUnit}
+            />
+            <div className="row">
+              <SearchBox
+                searchPlaceHolder={"City,Country"}
+                handleValueChange={value => {
+                  setSearch(value);
+                }}
+                value={search}
+              />
+            </div>
+            <div className="row pt-2 pb-2">
+              <WeatherData
+                currentWeather={currentWeather}
+                forecastData={forecastData}
+              />
+            </div>
+          </React.Fragment>
+        );
+      }}
+    </HomeContainer>
   );
 };

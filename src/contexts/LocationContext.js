@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { useState } from "react";
 
 import { getLocations } from "../services/locationService";
 
@@ -8,12 +8,11 @@ export const LocationProvider = ({ children }) => {
   const [processing, setProcessing] = useState(false);
   const [location, setLocation] = useState({});
   const [locationSearchResult, setLocationSearchResult] = useState([]);
-  const [locationQuery, setLocationQuery] = useState();
 
-  const searchLocation = async () => {
+  const searchLocation = async name => {
     try {
       setProcessing(true);
-      const locations = await getLocations(locationQuery);
+      const locations = await getLocations(name);
       setLocationSearchResult(locations);
       setProcessing(false);
     } catch (err) {
@@ -23,7 +22,17 @@ export const LocationProvider = ({ children }) => {
   };
 
   return (
-    <LocationContext.Provider value={{ location, locationSearchResult }} />
+    <LocationContext.Provider
+      value={{
+        processing,
+        location,
+        locationSearchResult,
+        setLocation,
+        searchLocation
+      }}
+    >
+      {children}
+    </LocationContext.Provider>
   );
 };
 

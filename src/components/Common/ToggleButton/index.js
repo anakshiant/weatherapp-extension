@@ -1,6 +1,7 @@
 import React from "react";
 
-export const ToggleButton = ({ options, handleOptionChange }) => {
+export const ToggleButton = ({ options, value, handleOptionChange }) => {
+  
   const handleOptionClick = value => {
     handleOptionChange(value);
   };
@@ -11,13 +12,13 @@ export const ToggleButton = ({ options, handleOptionChange }) => {
         {options &&
           options.length &&
           options.map((option, index) => {
-            const optionClass = option.active
+            const optionClass = option === value
               ? "btn btn-sm btn-primary w-50 btn-type"
               : "btn btn-sm btn-outline-primary w-50 btn-type";
 
             return (
-              <button className={optionClass} key={index} onClick={()=>handleOptionClick(option.name)}>
-                {option.name}
+              <button className={optionClass} key={index} onClick={()=>handleOptionClick(option)}>
+                {option}
               </button>
             );
           })}
